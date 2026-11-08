@@ -1,0 +1,1 @@
+document.querySelectorAll('[data-back]').forEach(function(a){a.addEventListener('click',function(e){if(history.length>1&&document.referrer.indexOf(location.host)<0){e.preventDefault();history.back();}});});

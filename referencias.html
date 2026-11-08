@@ -43,7 +43,7 @@ section.cat h2 i{width:12px;height:24px;border-radius:3px;display:inline-block;f
 <div class="t"><p class="k">Póster de tesis · Ingeniería Industrial UPC</p><h1>Referencias</h1></div>
 </div></header>
 <main class="wrap">
-<nav class="nav" aria-label="Recursos del póster"><a href="index.html">Inicio</a><a href="referencias.html" aria-current="page">Referencias</a><a href="dss.html">Explora el DSS</a><a href="planta.html">Recorre la planta</a></nav>
+<nav class="nav" aria-label="Recursos del póster"><a href="poster.pdf" class="back" data-back>← Volver al póster</a><a href="index.html">Inicio</a><a href="referencias.html" aria-current="page">Referencias</a><a href="dss.html">Explora el DSS</a><a href="planta.html">Recorre la planta</a></nav>
 <p style="margin:4px 0 8px">Fuentes de la investigación «Propuesta de mejora para incrementar las entregas a tiempo mediante Standard Work y un sistema de soporte a la decisión para la gestión de inventarios en una MYPE fabricante de pinturas», ordenadas según la parte del trabajo que sustentan.</p>
 <div class="intro" id="stats"></div>
 <div class="tools">
@@ -125,5 +125,6 @@ function render(){var q=state.q.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/
 document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value;render()});
 stats();chips();render();
 </script>
+<script src="back.js"></script>
 </body>
 </html>

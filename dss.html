@@ -60,6 +60,15 @@ table.cmp{width:100%;border-collapse:collapse;font-size:15px}
 table.cmp th,table.cmp td{padding:8px 4px;border-bottom:1px solid var(--line);text-align:right}
 table.cmp th:first-child,table.cmp td:first-child{text-align:left}
 .small{font-size:13px;color:var(--muted)}
+.prow{display:grid;grid-template-columns:40px minmax(0,1fr) 64px 76px;gap:8px;align-items:center;background:#F7F5F1;border-radius:12px;padding:6px 8px;margin-bottom:6px}
+.prow img{width:40px;height:40px;object-fit:contain}
+.prow .ico{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.prow .pn b{display:block;font-size:14px;line-height:1.15}.prow .pn span{display:block;font-size:12px;color:var(--muted);line-height:1.2}
+.prow .pb{position:relative;height:9px;background:#E4E8EE;border-radius:5px}.prow .pb i{position:absolute;left:0;top:0;bottom:0;border-radius:5px}.prow .pb em{position:absolute;top:-4px;height:17px;border-left:2px solid var(--ink)}
+.st{font-size:12px;font-weight:700;text-align:center;border-radius:6px;padding:4px 0}.st.ok{background:#E6F4EC;color:#145C3C}.st.wa{background:#FFF1D6;color:#7A4D00}.st.bad{background:#FCE4E7;color:#8C0B20}.st.buy{background:#F2B705;color:#0E2A4F}
+.tl{list-style:none;margin:0;padding:0}.tl li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.tl time{font-weight:700;color:var(--blue)}
+.tabs{grid-template-columns:repeat(6,minmax(0,1fr))}
+.nav a.back{background:var(--red);color:#fff;border-color:var(--red)}
 </style>
 </head>
 <body>
@@ -68,12 +77,37 @@ table.cmp th:first-child,table.cmp td:first-child{text-align:left}
 <div class="t"><p class="k">Prototipo navegable</p><h1>DSS en AppSheet</h1></div>
 </div></header>
 <main class="wrap">
-<p class="demo" style="margin:10px 0 0">Prototipo demostrativo: reproduce las reglas de la tesis con datos de ejemplo. No está conectado a la empresa.</p>
+<nav class="nav" aria-label="Recursos del póster"><a href="poster.pdf" class="back" data-back>← Volver al póster</a><a href="index.html">Inicio</a><a href="planta.html">Recorre la planta</a><a href="referencias.html">Referencias</a></nav>
+<p class="demo" style="margin:4px 0 0">Prototipo demostrativo: reproduce las reglas de la tesis con datos de ejemplo. No está conectado a la empresa.</p>
+
+<section class="view" id="v-tablero" aria-labelledby="h-tablero">
+<h2 class="v" id="h-tablero">Así se usaría el DSS</h2>
+<p class="lead">Vista de referencia del tablero en AppSheet: stock de productos y envases, y lo que hacen las automatizaciones.</p>
+<div class="kpis"><div><b style="color:var(--red)">2</b><span>ítems para reponer</span></div><div><b style="color:var(--orange)">3</b><span>alertas hoy</span></div><div><b style="color:var(--blue)">95,8 %</b><span>ERI del último conteo</span></div></div>
+<div class="card" style="padding:10px">
+<h3 style="margin:0 0 8px;font-size:17px">Stock frente al punto de reorden</h3>
+<div class="prow"><img src="img/prod_esmalte.png" alt=""><div class="pn"><b>Esmalte sintético Franja</b><span>Producto terminado · 1 gal</span></div><div class="pb"><i style="width:78%;background:var(--green)"></i></div><span class="st ok">Disponible</span></div>
+<div class="prow"><img src="img/prod_latex.png" alt=""><div class="pn"><b>Látex Franja</b><span>Producto terminado · 1 gal</span></div><div class="pb"><i style="width:42%;background:#E8A21C"></i></div><span class="st wa">Vigilar</span></div>
+<div class="prow"><img src="img/prod_thinner.png" alt=""><div class="pn"><b>Thinner acrílico Franja</b><span>Producto terminado · 1 gal</span></div><div class="pb"><i style="width:20%;background:var(--red)"></i></div><span class="st bad">Producir</span></div>
+<div class="prow" style="border:2px solid #F2B705"><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></span><div class="pn"><b>Envase 1 galón</b><span>Materia prima · 4&#160;000 und · ROP 5&#160;055</span></div><div class="pb"><i style="width:38%;background:var(--red)"></i><em style="left:48%"></em></div><span class="st buy">Comprar</span></div>
+</div>
+<div class="card" style="padding:10px">
+<h3 style="margin:0 0 8px;font-size:17px">Automatizaciones del día (ejemplo)</h3>
+<ol class="tl">
+<li><time>08:00</time><span><b>Conteo cíclico</b> de ítems clase A registrado en el celular.</span></li>
+<li><time>08:01</time><span><b>Bot de AppSheet</b> detecta que el envase de 1 galón está bajo el punto de reorden.</span></li>
+<li><time>08:01</time><span><b>Apps Script</b> elige al proveedor de menor costo total y arma una orden sugerida de 4&#160;700 und.</span></li>
+<li><time>08:02</time><span><b>Alerta</b> al supervisor con la orden pendiente.</span></li>
+<li><time>09:15</time><span><b>El supervisor aprueba</b>. El DSS sugiere; la persona decide.</span></li>
+</ol>
+</div>
+</section>
 
 <section class="view on" id="v-inicio" aria-labelledby="h-inicio">
 <h2 class="v" id="h-inicio">Del dato a la decisión</h2>
 <p class="lead">En la empresa, solo 3 de cada 4 pedidos llegaban a tiempo. El 78,6 % del impacto venía de roturas de stock. El DSS ordena los datos para decidir a tiempo qué comprar, si hay capacidad y qué revisar.</p>
 <div class="kpis"><div><b style="color:var(--red)">75,1 %</b><span>OTD actual</span></div><div><b style="color:var(--blue)">−69 %</b><span>ruptura de stock (simulado)</span></div><div><b style="color:var(--green)">88,9 %</b><span>OTD estimado</span></div></div>
+<button class="mod" data-go="tablero"><span class="ic" style="background:#FFF2C6;color:#7A4D00"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span><span><b>Así se usaría</b><span>Productos, stock y automatizaciones</span></span></button>
 <button class="mod" data-go="compras"><span class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.4 11h11.2L21 7H7"/></svg></span><span><b>¿Cuándo comprar?</b><span>Punto de reorden, stock de seguridad y lote</span></span></button>
 <button class="mod" data-go="capacidad"><span class="ic" style="background:#FDEFE6;color:var(--orange)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span><span><b>¿Llego a la fecha?</b><span>Tiempos estándar frente a la fecha comprometida</span></span></button>
 <button class="mod" data-go="control"><span class="ic" style="background:#FCE4E7;color:var(--red)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg></span><span><b>¿Qué revisar?</b><span>Conteo cíclico, ERI y alertas</span></span></button>
@@ -181,6 +215,7 @@ table.cmp th:first-child,table.cmp td:first-child{text-align:left}
 </main>
 <nav class="tabs" role="tablist" aria-label="Módulos del DSS">
 <button role="tab" data-go="inicio" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-7 9 7v9H3z"/></svg>Inicio</button>
+<button role="tab" data-go="tablero" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Tablero</button>
 <button role="tab" data-go="compras" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.4 11h11.2L21 7H7"/></svg>Compras</button>
 <button role="tab" data-go="capacidad" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/></svg>Capacidad</button>
 <button role="tab" data-go="control" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg>Control</button>
@@ -223,7 +258,8 @@ var e=Math.max(0,(1-Math.abs(f-r)/r)*100);var v=document.getElementById('veri');
 if(f===r){v.className='verdict ok';v.innerHTML='<div><b>ERI 100 %</b>El registro coincide con el conteo.</div>'}
 else{v.className='verdict warn';v.innerHTML='<div><b>ERI '+e.toFixed(1).replace('.',',')+' % · diferencia '+fmt(Math.abs(f-r))+' und</b>Registro bloqueado hasta verificar físicamente.</div>'}}
 reg.addEventListener('input',eri);fis.addEventListener('input',eri);eri();
-function fromHash(){var h=(location.hash||'').slice(1);if(['inicio','compras','capacidad','control','integra'].indexOf(h)>=0)go(h)}window.addEventListener('hashchange',fromHash);fromHash();
+function fromHash(){var h=(location.hash||'').slice(1);if(['inicio','tablero','compras','capacidad','control','integra'].indexOf(h)>=0)go(h)}window.addEventListener('hashchange',fromHash);fromHash();
 </script>
+<script src="back.js"></script>
 </body>
 </html>

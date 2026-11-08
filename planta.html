@@ -35,6 +35,18 @@
 .intro .kp div{background:#1E3F6E;border-radius:12px;padding:10px}
 .intro .kp b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:28px;line-height:1}
 .intro .kp span{font-size:13px;color:#C9D6EA}
+.s5{background:#E6F4EC;color:#145C3C}
+.steps{background:#FFF7F1;border:1.5px solid #F6C8AA;border-radius:12px;padding:10px;margin:4px 0 6px}
+.steps .sh{display:flex;justify-content:space-between;gap:8px;font-weight:700;font-size:14px;color:#7A3008;margin-bottom:6px;flex-wrap:wrap}
+.steps .sh span{font-weight:600;font-size:12px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.steps i{display:inline-block;height:8px;border-radius:4px}.steps .sh i{width:14px}
+.k1{background:#B9AFA1}.k2{background:var(--orange)}
+.srow{display:grid;grid-template-columns:26px minmax(0,1fr) 52px;gap:8px;align-items:center;padding:5px 0;border-top:1px solid #F3DCCB}
+.sn{width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px}
+.st1{font-size:14px;font-weight:600;margin-bottom:3px}
+.sb{height:8px;margin:2px 0}.sb i{height:8px;display:block}
+.sv{text-align:right;line-height:1.1}.sv b{display:block;font-size:14px;color:#6B7380}.sv span{font-size:14px;font-weight:800;color:var(--orange)}
+.snote{font-size:12px;color:var(--muted);margin:6px 0 0}
 </style>
 </head>
 <body>
@@ -43,7 +55,7 @@
 <div class="t"><p class="k">Recorrido fotográfico</p><h1>Recorre la planta</h1></div>
 </div></header>
 <main class="wrap">
-<nav class="nav" aria-label="Recursos del póster"><a href="index.html">Inicio</a><a href="referencias.html">Referencias</a><a href="dss.html">Explora el DSS</a><a href="planta.html" aria-current="page">Recorre la planta</a></nav>
+<nav class="nav" aria-label="Recursos del póster"><a href="poster.pdf" class="back" data-back>← Volver al póster</a><a href="index.html">Inicio</a><a href="referencias.html">Referencias</a><a href="dss.html">Explora el DSS</a><a href="planta.html" aria-current="page">Recorre la planta</a></nav>
 <div class="prog" id="prog" role="group" aria-label="Etapas del recorrido"></div>
 <div class="track" id="track">
 <section class="intro" aria-label="Inicio del recorrido">
@@ -59,16 +71,17 @@
 </main>
 <script>
 var S=[
-{n:'Molienda',img:['img/molienda.jpg','img/molienda2.jpg'],what:'Se cargan los materiales en el tanque, el dispersor muele la mezcla y al final se filtra y se limpia el equipo.',tags:[['sw','Aquí actúa el Standard Work','SOP, tiempo estándar y 5S reducen el tiempo neto de 2,31 h a 1,89 h por OT (−18,2 %).']]},
-{n:'Completado',img:['img/completado.jpg'],what:'Se agregan los materiales restantes y se completa la mezcla hasta lograr el color y la viscosidad del producto.',tags:[['sw','Aquí actúa el Standard Work','Control visual de grano y viscosidad; tiempo neto −17,7 % en el escenario base.']]},
-{n:'Envasado',img:['img/envasado.jpg'],what:'La pintura baja desde el completado y se llena envase por envase desde la válvula de descarga.',tags:[['dss','Aquí impacta el DSS','Sin envases la estación se detiene: hubo 11 roturas de stock en tres meses. El DSS dispara la compra en el punto de reorden (5 055 und).'],['nc','Sin cambio en el método','La simulación no modifica esta etapa.']]},
-{n:'Empaquetado',img:['img/empaquetado.jpg'],what:'Las latas se agrupan por presentación, se separan con cartón y se envuelven con film para su traslado.',tags:[['nc','Sin cambio en el método','Etapa con pocos pasos; la propuesta no la interviene.']]},
+{n:'Molienda',img:['img/molienda.jpg','img/molienda2.jpg'],what:'Se cargan los materiales en el tanque, el dispersor muele la mezcla y al final se filtra y se limpia el equipo.',steps:[['Agregar materiales',17.3,11],['Mezcla (dispersión)',83.3,74],['Filtrado y limpieza',40.4,38]],tags:[['sw','Standard Work en esta etapa','SOP con la secuencia de pasos, control visual de calidad y tiempo estándar. Tiempo neto simulado: 2,31 → 1,89 h por OT (−18,2 %).']]},
+{n:'Completado',img:['img/completado.jpg'],what:'Se agregan los materiales restantes y se completa la mezcla hasta lograr el color y la viscosidad del producto.',steps:[['Agregar materiales',67.9,50],['Mezcla',43.4,35]],tags:[['sw','Standard Work en esta etapa','SOP, control visual de grano y viscosidad, y tiempo estándar. Tiempo neto simulado −17,7 %.']]},
+{n:'Envasado',img:['img/envasado.jpg'],what:'La pintura baja desde el completado y se llena envase por envase desde la válvula de descarga.',tags:[['dss','Aquí impacta el DSS','Sin envases la estación se detiene: hubo 11 roturas de stock en tres meses. El DSS dispara la compra en el punto de reorden (5 055 und).']]},
+{n:'Empaquetado',img:['img/empaquetado.jpg'],what:'Las latas se agrupan por presentación, se separan con cartón y se envuelven con film para su traslado.',tags:[]},
 {n:'Almacenado',img:['img/almacen.jpg','img/almacen2.jpg'],what:'El producto terminado se apila en pallets por familia en el almacén, listo para el picking y el despacho.',tags:[['dss','Aquí impacta el DSS','Visibilidad del stock de producto terminado, conteo cíclico por clase ABC y alertas antes de comprometer un pedido.']]}
 ];
+function stepsHtml(st){if(!st)return '';var mx=Math.max.apply(null,st.map(function(x){return x[1]}));return '<div class="steps"><div class="sh">Paso a paso (min por lote)<span><i class="k1"></i>hoy <i class="k2"></i>referencia estándar</span></div>'+st.map(function(x,i){return '<div class="srow"><span class="sn">'+(i+1)+'</span><div><div class="st1">'+x[0]+'</div><div class="sb"><i class="k1" style="width:'+(x[1]/mx*100)+'%"></i></div><div class="sb"><i class="k2" style="width:'+(x[2]/mx*100)+'%"></i></div></div><div class="sv"><b>'+String(x[1]).replace('.',',')+'</b><span>'+x[2]+'</span></div></div>'}).join('')+'<p class="snote">Promedio observado frente al mínimo observado (esmalte sintético Franja blanco).</p></div>'}
 var track=document.getElementById('track');
 S.forEach(function(s,i){var el=document.createElement('section');el.className='step';el.setAttribute('aria-label','Etapa '+(i+1)+': '+s.n);
 var alt=s.img.length>1?'<div class="alt">'+s.img.map(function(src,j){return '<button type="button" aria-label="Ver foto '+(j+1)+' de '+s.n+'" data-src="'+src+'"><img src="'+src+'" alt=""></button>'}).join('')+'</div>':'';
-el.innerHTML='<div class="ph"><img src="'+s.img[0]+'" alt="'+s.n+' en la planta" loading="lazy"><span class="n">'+(i+1)+'</span>'+alt+'</div><div class="body"><h2>'+s.n+'</h2><p class="what">'+s.what+'</p>'+s.tags.map(function(t){return '<div class="tag '+t[0]+'"><span><b>'+t[1]+'</b>'+t[2]+'</span></div>'}).join('')+'</div>';
+el.innerHTML='<div class="ph"><img src="'+s.img[0]+'" alt="'+s.n+' en la planta" loading="lazy"><span class="n">'+(i+1)+'</span>'+alt+'</div><div class="body"><h2>'+s.n+'</h2><p class="what">'+s.what+'</p>'+stepsHtml(s.steps)+'<div class="tag s5"><span><b>5S en esta área</b>Clasificar, ordenar y limpiar: herramientas en su lugar y pasillos despejados.</span></div>'+s.tags.map(function(t){return '<div class="tag '+t[0]+'"><span><b>'+t[1]+'</b>'+t[2]+'</span></div>'}).join('')+'</div>';
 track.appendChild(el);
 el.querySelectorAll('.alt button').forEach(function(b){b.onclick=function(){el.querySelector('.ph > img').src=b.dataset.src}})});
 var prog=document.getElementById('prog'),labels=['Inicio'].concat(S.map(function(s,i){return String(i+1)}));
@@ -80,5 +93,6 @@ document.getElementById('prev').onclick=function(){to(cur()-1)};
 document.getElementById('next').onclick=function(){var c=cur();to(c===labels.length-1?0:c+1)};
 var t;track.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(mark,60)});mark();
 </script>
+<script src="back.js"></script>
 </body>
 </html>
