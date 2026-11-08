@@ -7,6 +7,7 @@
 <meta name="description" content="Prototipo demostrativo del sistema de soporte a la decisión (DSS) en AppSheet para la gestión de inventarios de una MYPE de pinturas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
 <link rel="stylesheet" href="estilo.css">
 <style>
 body{padding-bottom:84px}
@@ -69,6 +70,39 @@ table.cmp th:first-child,table.cmp td:first-child{text-align:left}
 .tl{list-style:none;margin:0;padding:0}.tl li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.tl time{font-weight:700;color:var(--blue)}
 .tabs{grid-template-columns:repeat(6,minmax(0,1fr))}
 .nav a.back{background:var(--red);color:#fff;border-color:var(--red)}
+.ms{font-family:"Material Symbols Outlined";font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;-webkit-font-feature-settings:"liga";font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-size:18px}
+.shots-h{display:flex;align-items:center;justify-content:space-between;margin:6px 0 2px}.shots-h h3{margin:0;font-size:19px}
+.sbtn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font-size:24px;line-height:1;cursor:pointer;color:var(--navy);margin-left:6px}
+.tg{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:1px 6px;vertical-align:1px}.tg.use{background:#E6F4EC;color:#145C3C}.tg.ref{background:#FFF2C6;color:#6B4A00}
+.shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 12px;margin-bottom:8px;scrollbar-width:thin}
+.shot{flex:0 0 236px;scroll-snap-align:start;margin:0}
+.phone{background:#0A0F18;border-radius:30px;padding:8px;box-shadow:0 6px 18px rgba(14,42,79,.18)}
+.scr{background:#F4F6FA;border-radius:23px;overflow:hidden;height:456px;display:flex;flex-direction:column;font-size:12px;color:#1B2433;position:relative}
+.scr .sb{display:flex;justify-content:space-between;padding:6px 14px 2px;font-size:11px;font-weight:700;background:#1F5FA8;color:#fff}.scr .sb .ms{font-size:12px;letter-spacing:2px}
+.abar{background:#1F5FA8;color:#fff;padding:6px 12px 10px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}.abar .r{margin-left:auto}
+.abody{flex:1;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:hidden;position:relative}
+.anav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#fff;border-top:1px solid #E1E5EC;font-size:9.5px;color:#6B7380;text-align:center;padding:5px 0 8px}
+.anav span{display:flex;flex-direction:column;align-items:center;gap:1px}.anav i{font-size:20px}.anav .on{color:#1F5FA8;font-weight:700}
+.chips{display:flex;gap:4px}.chips span{border:1px solid #C8D1DD;border-radius:999px;padding:2px 8px;font-size:11px;background:#fff}.chips .on{background:#1F5FA8;color:#fff;border-color:#1F5FA8}
+.li{display:flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 8px;box-shadow:0 1px 0 #E1E5EC}.li>div{flex:1;min-width:0}.li b{display:block;font-size:12.5px}.li small{display:block;color:#6B7380;font-size:11px}
+.li.pr img{width:30px;height:30px;object-fit:contain}
+.pbar{display:block;height:6px;background:#E4E8EE;border-radius:3px;margin-top:4px;position:relative}.pbar em{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.pl{font-size:10.5px;font-weight:700;border-radius:5px;padding:2px 6px;white-space:nowrap}.pl.ok{background:#E6F4EC;color:#145C3C}.pl.wa{background:#FFF1D6;color:#7A4D00}.pl.bad{background:#FCE4E7;color:#8C0B20}.pl.buy{background:#F2B705;color:#0E2A4F}.pl.in{background:#E3ECF7;color:#123E70}.pl.gr{background:#ECEEF2;color:#4A5361}
+.fab{position:absolute;right:10px;bottom:10px;width:42px;height:42px;border-radius:50%;background:#E8601C;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(0,0,0,.2)}.fab .ms{font-size:24px}
+.srch{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #C8D1DD;border-radius:8px;padding:6px 8px;color:#8C95A1}
+.hero{display:flex;align-items:center;gap:8px;background:#fff;border-radius:10px;padding:8px 10px}.hero>.ms{font-size:30px;color:#8C95A1}.hero div{flex:1}.hero small{display:block;color:#6B7380}.hero b{font-family:"Barlow Condensed",sans-serif;font-size:24px;line-height:1}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:6px}.g2>div{background:#fff;border-radius:9px;padding:7px 8px}.g2 small{display:block;color:#6B7380;font-size:10.5px}.g2 b{font-family:"Barlow Condensed",sans-serif;font-size:22px;line-height:1.05}.g2 .in{border:2px solid #1F5FA8}
+.chart{background:#fff;border-radius:9px;padding:7px 8px}.chart small{color:#6B7380;font-size:10.5px}.chart svg{display:block;width:100%;height:auto;margin-top:4px}.nowrap{white-space:nowrap}
+.btn2{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;background:#1F5FA8;color:#fff;border-radius:9px;padding:9px;font-weight:700;font-size:12.5px}
+.bot{display:flex;gap:6px;align-items:center;background:#0E2A4F;color:#fff;border-radius:9px;padding:8px;font-size:11.5px}.bot .ms{color:#F2B705;font-size:20px}
+.kv{background:#fff;border-radius:9px;padding:6px 8px}.kv small{display:block;color:#6B7380;font-size:10.5px}.kv b{font-size:13px}.kv b.big{font-family:"Barlow Condensed",sans-serif;font-size:26px;color:#1F5FA8}
+.row2{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px}.row2 .b{display:flex;align-items:center;justify-content:center;gap:4px;border-radius:9px;padding:9px;font-weight:700}.row2 .ok{background:#1E8A5A;color:#fff}.row2 .no{background:#fff;border:1.5px solid #C8D1DD}
+.fl{background:#fff;border-radius:9px;padding:6px 8px;border-bottom:2px solid #C8D1DD}.fl small{display:block;color:#6B7380;font-size:10.5px}.fl span{font-weight:600;font-size:12.5px}
+.diff{display:flex;align-items:center;gap:6px;background:#FFF1D6;color:#7A4D00;border-radius:9px;padding:7px 8px;font-weight:600;font-size:11.5px}
+.scr.lock{background:linear-gradient(160deg,#16325C,#1F5FA8 60%,#E8601C);color:#fff}.scr.lock .sb{background:transparent}
+.clock{text-align:center;font-family:"Barlow Condensed",sans-serif;font-size:58px;font-weight:700;line-height:1;margin:22px 0 18px}.clock small{display:block;font-family:Barlow,sans-serif;font-size:13px;font-weight:500}
+.notif{margin:0 10px 8px;background:rgba(255,255,255,.93);color:#1B2433;border-radius:14px;padding:9px 10px;font-size:12px}.notif .nh{display:flex;align-items:center;gap:5px;font-size:10.5px;color:#6B7380;margin-bottom:2px}.notif .nh .ms{font-size:15px;color:#E8601C}.notif b{display:block;font-size:12.5px}
+figcaption{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.3}figcaption b{display:block;color:var(--ink);font-size:14.5px;margin:3px 0 1px}
 </style>
 </head>
 <body>
@@ -82,7 +116,101 @@ table.cmp th:first-child,table.cmp td:first-child{text-align:left}
 
 <section class="view" id="v-tablero" aria-labelledby="h-tablero">
 <h2 class="v" id="h-tablero">Así se usaría el DSS</h2>
-<p class="lead">Vista de referencia del tablero en AppSheet: stock de productos y envases, y lo que hacen las automatizaciones.</p>
+<p class="lead">Así se vería la app en AppSheet: las ventanas que usarían el supervisor y el almacenero, el stock de productos y envases, y lo que hacen las automatizaciones.</p>
+<div class="shots-h"><h3>Pantallas de la app</h3><span><button type="button" class="sbtn" data-dir="-1" aria-label="Pantalla anterior">‹</button><button type="button" class="sbtn" data-dir="1" aria-label="Pantalla siguiente">›</button></span></div>
+<p class="small" style="margin:0 0 8px">Desliza para ver cómo se vería cada ventana. <span class="tg use">En uso</span> módulo que ya existe en la empresa · <span class="tg ref">Referencial</span> diseñado en la tesis. Todas son recreaciones con datos de ejemplo.</p>
+<div class="shots" id="shots">
+
+<figure class="shot"><div class="phone"><div class="scr">
+<div class="sb"><span>9:41</span><span class="ms">signal_cellular_alt wifi battery_full</span></div>
+<div class="abar"><span class="ms">menu</span>Solicitudes<span class="ms r">search</span></div>
+<div class="abody">
+<div class="chips"><span class="on">Todas</span><span>Pendientes</span><span>Cerradas</span></div>
+<div class="li"><div><b>Solicitud 0412</b><small>Cliente A · 18 artículos</small></div><span class="pl ok">Cerrada</span></div>
+<div class="li"><div><b>Solicitud 0413</b><small>Cliente B · 7 artículos</small></div><span class="pl wa">Empaque</span></div>
+<div class="li"><div><b>Solicitud 0414</b><small>Cliente C · 25 artículos</small></div><span class="pl in">Producción</span></div>
+<div class="li"><div><b>Solicitud 0415</b><small>Cliente D · 4 artículos</small></div><span class="pl wa">Empaque</span></div>
+<div class="li"><div><b>Solicitud 0416</b><small>Cliente E · 12 artículos</small></div><span class="pl gr">Pendiente</span></div>
+<div class="fab"><span class="ms">add</span></div>
+</div>
+<div class="anav"><span class="on"><i class="ms">receipt_long</i>Solicitudes</span><span><i class="ms">inventory_2</i>Paquetes</span><span><i class="ms">local_shipping</i>Despacho</span><span><i class="ms">monitoring</i>Monitor</span></div>
+</div></div><figcaption><span class="tg use">En uso</span><b>Control de pedidos</b>Cada solicitud con su estado, de la producción al despacho.</figcaption></figure>
+
+<figure class="shot"><div class="phone"><div class="scr">
+<div class="sb"><span>9:41</span><span class="ms">signal_cellular_alt wifi battery_full</span></div>
+<div class="abar"><span class="ms">menu</span>Inventario PT<span class="ms r">filter_list</span></div>
+<div class="abody">
+<div class="srch"><span class="ms">search</span>Buscar producto</div>
+<div class="chips"><span class="on">Clase A</span><span>B</span><span>C</span></div>
+<div class="li pr"><img src="img/prod_esmalte.png" alt=""><div><b>Esmalte Franja</b><small>1 gal · blanco</small><i class="pbar"><em style="width:78%;background:#1E8A5A"></em></i></div><span class="pl ok">OK</span></div>
+<div class="li pr"><img src="img/prod_latex.png" alt=""><div><b>Látex Franja</b><small>1 gal · blanco</small><i class="pbar"><em style="width:42%;background:#E8A21C"></em></i></div><span class="pl wa">Vigilar</span></div>
+<div class="li pr"><img src="img/prod_thinner.png" alt=""><div><b>Thinner acrílico</b><small>1 gal</small><i class="pbar"><em style="width:20%;background:#C8102E"></em></i></div><span class="pl bad">Producir</span></div>
+<div class="li pr"><img src="img/prod_esmalte.png" alt=""><div><b>Esmalte Franja</b><small>1/4 gal · negro</small><i class="pbar"><em style="width:64%;background:#1E8A5A"></em></i></div><span class="pl ok">OK</span></div>
+</div>
+<div class="anav"><span><i class="ms">space_dashboard</i>Tablero</span><span class="on"><i class="ms">inventory</i>Inventario</span><span><i class="ms">shopping_cart</i>Compras</span><span><i class="ms">fact_check</i>Conteo</span></div>
+</div></div><figcaption><span class="tg ref">Referencial</span><b>Inventario de producto terminado</b>Stock por clase ABC con semáforo frente al punto de reorden.</figcaption></figure>
+
+<figure class="shot"><div class="phone"><div class="scr">
+<div class="sb"><span>9:41</span><span class="ms">signal_cellular_alt wifi battery_full</span></div>
+<div class="abar"><span class="ms">arrow_back</span>Envase 1 galón<span class="ms r">edit</span></div>
+<div class="abody">
+<div class="hero"><span class="ms">deployed_code</span><div><small>Stock actual</small><b class="nowrap">4 000 <small style="display:inline;font-size:14px">und</small></b></div><span class="pl buy">Comprar</span></div>
+<div class="g2"><div><small>Stock seguridad</small><b>2 208</b></div><div><small>Punto reorden</small><b>5 055</b></div><div><small>Lote de compra</small><b>4 700</b></div><div><small>Clase</small><b>A</b></div></div>
+<div class="chart"><small>Consumo semanal (ejemplo)</small><svg viewBox="0 0 200 54" aria-hidden="true"><polyline fill="none" stroke="#1F5FA8" stroke-width="2.5" points="4,34 30,28 56,38 82,22 108,30 134,18 160,26 196,16"/><line x1="0" y1="44" x2="200" y2="44" stroke="#C8D1DD" stroke-dasharray="3 3"/></svg></div>
+<div class="btn2"><span class="ms">add_shopping_cart</span>Generar orden de compra</div>
+</div>
+<div class="anav"><span><i class="ms">space_dashboard</i>Tablero</span><span class="on"><i class="ms">inventory</i>Inventario</span><span><i class="ms">shopping_cart</i>Compras</span><span><i class="ms">fact_check</i>Conteo</span></div>
+</div></div><figcaption><span class="tg ref">Referencial</span><b>Ficha del ítem</b>El DSS calcula stock de seguridad, punto de reorden y lote de compra (valores de la tesis).</figcaption></figure>
+
+<figure class="shot"><div class="phone"><div class="scr">
+<div class="sb"><span>9:41</span><span class="ms">signal_cellular_alt wifi battery_full</span></div>
+<div class="abar"><span class="ms">arrow_back</span>Orden sugerida<span class="ms r">more_vert</span></div>
+<div class="abody">
+<div class="bot"><span class="ms">smart_toy</span><span>Bot: stock ≤ punto de reorden</span></div>
+<div class="kv"><small>Ítem</small><b>Envase 1 galón</b></div>
+<div class="kv"><small>Cantidad sugerida</small><b class="big">4 700 und</b></div>
+<div class="kv"><small>Proveedor</small><b>Proveedor A</b><small>menor costo total</small></div>
+<div class="kv"><small>Llegada estimada</small><b>Según plazo del proveedor</b></div>
+<div class="row2"><span class="b ok"><span class="ms">check</span>Aprobar</span><span class="b no"><span class="ms">edit</span>Ajustar</span></div>
+</div>
+<div class="anav"><span><i class="ms">space_dashboard</i>Tablero</span><span><i class="ms">inventory</i>Inventario</span><span class="on"><i class="ms">shopping_cart</i>Compras</span><span><i class="ms">fact_check</i>Conteo</span></div>
+</div></div><figcaption><span class="tg ref">Referencial</span><b>Orden de compra sugerida</b>El bot propone la compra; el supervisor aprueba o ajusta.</figcaption></figure>
+
+<figure class="shot"><div class="phone"><div class="scr">
+<div class="sb"><span>9:41</span><span class="ms">signal_cellular_alt wifi battery_full</span></div>
+<div class="abar"><span class="ms">close</span>Conteo cíclico<span class="ms r">photo_camera</span></div>
+<div class="abody">
+<div class="fl"><small>Ítem</small><span>Esmalte Franja 1 gal · blanco</span></div>
+<div class="fl"><small>Ubicación</small><span>Almacén PT · rack 2</span></div>
+<div class="g2"><div><small>Según sistema</small><b>120</b></div><div class="in"><small>Contado</small><b>118</b></div></div>
+<div class="diff"><span class="ms">error</span>Diferencia: −2 und · se registra el ajuste</div>
+<div class="fl"><small>Responsable</small><span>Almacenero</span></div>
+<div class="btn2"><span class="ms">save</span>Guardar conteo</div>
+</div>
+<div class="anav"><span><i class="ms">space_dashboard</i>Tablero</span><span><i class="ms">inventory</i>Inventario</span><span><i class="ms">shopping_cart</i>Compras</span><span class="on"><i class="ms">fact_check</i>Conteo</span></div>
+</div></div><figcaption><span class="tg ref">Referencial</span><b>Conteo cíclico</b>Se cuenta desde el celular; las diferencias alimentan el ERI.</figcaption></figure>
+
+<figure class="shot"><div class="phone"><div class="scr">
+<div class="sb"><span>9:41</span><span class="ms">signal_cellular_alt wifi battery_full</span></div>
+<div class="abar"><span class="ms">menu</span>Tablero<span class="ms r">refresh</span></div>
+<div class="abody">
+<div class="g2"><div><small>Ítems para reponer</small><b style="color:#C8102E">2</b></div><div><small>ERI último conteo</small><b style="color:#1F5FA8">95,8 %</b></div></div>
+<div class="chart"><small>Pedidos a tiempo por mes (ejemplo)</small><svg viewBox="0 0 200 64" aria-hidden="true"><g fill="#B9C6D8"><rect x="8" y="22" width="22" height="38" rx="3"/><rect x="40" y="18" width="22" height="42" rx="3"/><rect x="72" y="20" width="22" height="40" rx="3"/></g><g fill="#1E8A5A"><rect x="104" y="12" width="22" height="48" rx="3"/><rect x="136" y="9" width="22" height="51" rx="3"/><rect x="168" y="7" width="22" height="53" rx="3"/></g></svg></div>
+<div class="li"><div><b>Alertas de hoy</b><small>1 compra · 1 producción · 1 conteo</small></div><span class="pl wa">3</span></div>
+<div class="li"><div><b>Órdenes por aprobar</b><small>Envase 1 galón · 4 700 und</small></div><span class="pl buy">1</span></div>
+</div>
+<div class="anav"><span class="on"><i class="ms">space_dashboard</i>Tablero</span><span><i class="ms">inventory</i>Inventario</span><span><i class="ms">shopping_cart</i>Compras</span><span><i class="ms">fact_check</i>Conteo</span></div>
+</div></div><figcaption><span class="tg ref">Referencial</span><b>Tablero del supervisor</b>Lo que hay que decidir hoy, en una sola pantalla.</figcaption></figure>
+
+<figure class="shot"><div class="phone"><div class="scr lock">
+<div class="sb"><span>9:41</span><span class="ms">signal_cellular_alt wifi battery_full</span></div>
+<div class="clock">8:02<small>lunes</small></div>
+<div class="notif"><div class="nh"><span class="ms">notifications_active</span>DSS Diamante · ahora</div><b>Envase 1 galón bajo el punto de reorden</b><span>Orden sugerida de 4 700 und lista para aprobar.</span></div>
+<div class="notif"><div class="nh"><span class="ms">mail</span>Correo · 08:01</div><b>Resumen diario de inventario</b><span>2 ítems para reponer · 1 conteo pendiente.</span></div>
+</div></div><figcaption><span class="tg ref">Referencial</span><b>Alerta automática</b>Apps Script envía el aviso al celular y por correo.</figcaption></figure>
+
+</div>
+
 <div class="kpis"><div><b style="color:var(--red)">2</b><span>ítems para reponer</span></div><div><b style="color:var(--orange)">3</b><span>alertas hoy</span></div><div><b style="color:var(--blue)">95,8 %</b><span>ERI del último conteo</span></div></div>
 <div class="card" style="padding:10px">
 <h3 style="margin:0 0 8px;font-size:17px">Stock frente al punto de reorden</h3>
@@ -260,6 +388,7 @@ else{v.className='verdict warn';v.innerHTML='<div><b>ERI '+e.toFixed(1).replace(
 reg.addEventListener('input',eri);fis.addEventListener('input',eri);eri();
 function fromHash(){var h=(location.hash||'').slice(1);if(['inicio','tablero','compras','capacidad','control','integra'].indexOf(h)>=0)go(h)}window.addEventListener('hashchange',fromHash);fromHash();
 </script>
+<script>document.querySelectorAll(".sbtn").forEach(function(b){b.onclick=function(){var t=document.getElementById("shots");t.scrollBy({left:(+b.dataset.dir)*250,behavior:"smooth"})}})</script>
 <script src="back.js"></script>
 </body>
 </html>
