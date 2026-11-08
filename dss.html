@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explora el DSS</title>
+<meta name="description" content="Prototipo demostrativo del sistema de soporte a la decisión (DSS) en AppSheet para la gestión de inventarios de una MYPE de pinturas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="estilo.css">
+<style>
+body{padding-bottom:84px}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:#0E2A4F;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));z-index:5;padding-bottom:env(safe-area-inset-bottom)}
+.tabs button{background:none;border:0;color:#B8C7DC;min-height:62px;font-size:12px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}
+.tabs button svg{width:22px;height:22px}
+.tabs button[aria-selected="true"]{color:#fff;background:#16385F}
+.view{display:none;padding-top:6px}
+.view.on{display:block}
+h2.v{font-family:"Barlow Condensed",sans-serif;font-size:28px;line-height:1.05;margin:8px 0 4px}
+.lead{color:var(--muted);margin:0 0 12px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.kpis div{background:#fff;border-radius:14px;padding:10px 8px;text-align:center;border:1.5px solid var(--line)}
+.kpis b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:28px;line-height:1}
+.kpis span{font-size:13px;color:var(--muted);line-height:1.2;display:block;margin-top:2px}
+.status{display:grid;gap:8px}
+.status div{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.mod{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;cursor:pointer;min-height:64px;color:var(--ink)}
+.mod .ic{width:42px;height:42px;border-radius:12px;background:#E3ECF7;color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mod b{display:block;font-size:16px}
+.mod span{font-size:14px;color:var(--muted)}
+label.l{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;margin:10px 0 4px}
+label.l output{font-family:"Barlow Condensed",sans-serif;font-size:24px;color:var(--navy)}
+input[type=range]{width:100%;accent-color:var(--blue);height:32px}
+.bar{position:relative;height:22px;background:#E8EDF4;border-radius:11px;margin:30px 0 26px}
+.bar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:11px}
+.bar .mk{position:absolute;top:-8px;bottom:-8px;width:3px;background:var(--ink)}
+.bar .mk span{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;white-space:nowrap}
+.bar .mk.b span{top:auto;bottom:-22px}
+.verdict{border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.verdict b{font-family:"Barlow Condensed",sans-serif;font-size:24px;line-height:1.05;display:block}
+.verdict.ok{background:#E6F4EC;color:#145C3C}
+.verdict.warn{background:#FFF1D6;color:#7A4D00}
+.verdict.bad{background:#FCE4E7;color:#8C0B20}
+.seg{display:flex;background:#E8EDF4;border-radius:12px;padding:4px;gap:4px}
+.seg button{flex:1;min-height:44px;border:0;border-radius:9px;background:transparent;font-weight:700;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--navy);box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.params{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;font-size:14px}
+.params div{background:#F4F6FA;border-radius:10px;padding:8px}
+.params b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:22px}
+.formula{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;background:#F4F6FA;border-radius:10px;padding:8px 10px;overflow-x:auto}
+.alert{display:flex;gap:10px;align-items:flex-start;border-left:0;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px}
+.alert .ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.flow{display:grid;gap:6px}
+.flow .st{display:flex;gap:10px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px}
+.flow .n{width:30px;height:30px;border-radius:50%;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:"Barlow Condensed",sans-serif;font-size:18px}
+.flow .ar{text-align:center;color:var(--muted);line-height:1}
+table.cmp{width:100%;border-collapse:collapse;font-size:15px}
+table.cmp th,table.cmp td{padding:8px 4px;border-bottom:1px solid var(--line);text-align:right}
+table.cmp th:first-child,table.cmp td:first-child{text-align:left}
+.small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<img src="img/logo_diamante.png" alt="Pinturas Diamante" style="height:34px">
+<div class="t"><p class="k">Prototipo navegable</p><h1>DSS en AppSheet</h1></div>
+</div></header>
+<main class="wrap">
+<p class="demo" style="margin:10px 0 0">Prototipo demostrativo: reproduce las reglas de la tesis con datos de ejemplo. No está conectado a la empresa.</p>
+
+<section class="view on" id="v-inicio" aria-labelledby="h-inicio">
+<h2 class="v" id="h-inicio">Del dato a la decisión</h2>
+<p class="lead">En la empresa, solo 3 de cada 4 pedidos llegaban a tiempo. El 78,6 % del impacto venía de roturas de stock. El DSS ordena los datos para decidir a tiempo qué comprar, si hay capacidad y qué revisar.</p>
+<div class="kpis"><div><b style="color:var(--red)">75,1 %</b><span>OTD actual</span></div><div><b style="color:var(--blue)">−69 %</b><span>ruptura de stock (simulado)</span></div><div><b style="color:var(--green)">88,9 %</b><span>OTD estimado</span></div></div>
+<button class="mod" data-go="compras"><span class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.4 11h11.2L21 7H7"/></svg></span><span><b>¿Cuándo comprar?</b><span>Punto de reorden, stock de seguridad y lote</span></span></button>
+<button class="mod" data-go="capacidad"><span class="ic" style="background:#FDEFE6;color:var(--orange)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span><span><b>¿Llego a la fecha?</b><span>Tiempos estándar frente a la fecha comprometida</span></span></button>
+<button class="mod" data-go="control"><span class="ic" style="background:#FCE4E7;color:var(--red)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg></span><span><b>¿Qué revisar?</b><span>Conteo cíclico, ERI y alertas</span></span></button>
+<button class="mod" data-go="integra"><span class="ic" style="background:#E6F4EC;color:var(--green)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h6M14 12h6M10 12a2 2 0 1 0 4 0 2 2 0 1 0-4 0M12 4v4M12 16v4"/></svg></span><span><b>Integración con Standard Work</b><span>Cómo se conectan los dos componentes</span></span></button>
+<div class="card" style="margin-top:8px">
+<h3 style="margin:0 0 8px;font-size:17px">Qué está implementado y qué no</h3>
+<div class="status">
+<div><span class="dot" style="background:var(--green)"></span><span><b>Operativo hoy en AppSheet:</b> control de pedidos (solicitudes, paquetes y despacho).</span></div>
+<div><span class="dot" style="background:var(--blue)"></span><span><b>Diseñado y validado en Simio:</b> política de compra con punto de reorden y tiempos estándar.</span></div>
+<div><span class="dot" style="background:#C9A227"></span><span><b>Diseñado en la tesis:</b> pronóstico por CV², conteo cíclico, ERI, alertas y tablero. Aquí se muestran como referencia.</span></div>
+</div>
+</div>
+</section>
+
+<section class="view" id="v-compras" aria-labelledby="h-compras">
+<h2 class="v" id="h-compras">¿Cuándo comprar envases?</h2>
+<p class="lead">Ítem validado en la tesis: envase de 1 galón para esmalte sintético Franja. Mueve el stock y mira la decisión.</p>
+<div class="card">
+<label class="l" for="stk">Stock disponible <output id="stk-o">6 500 und</output></label>
+<input id="stk" type="range" min="0" max="12000" step="100" value="6500">
+<div style="margin-top:6px"><span class="small" style="font-weight:600">¿Hay una orden en camino?</span>
+<div class="seg" role="group" aria-label="Orden en camino" style="margin-top:4px"><button type="button" id="oc0" aria-pressed="true">No</button><button type="button" id="oc1" aria-pressed="false">Sí, 4 700 und</button></div></div>
+<div class="bar" aria-hidden="true"><div class="fill" id="fill"></div><div class="mk" id="mk-ss"><span>SS 2 208</span></div><div class="mk b" id="mk-rop"><span>ROP 5 055</span></div></div>
+<div class="verdict" id="vrd" role="status" aria-live="polite"></div>
+<p class="small" id="cov" style="margin:8px 0 0"></p>
+</div>
+<div class="card">
+<h3 style="margin:0 0 8px;font-size:17px">Parámetros calculados en la tesis</h3>
+<div class="params">
+<div><b>85 406</b>demanda anual 2025</div><div><b>12 días</b>plazo del proveedor</div>
+<div><b>95 %</b>nivel de servicio (Z = 1,645)</div><div><b>S/ 65 · S/ 0,50</b>costo de pedir · mantener</div>
+<div><b>2 208 und</b>stock de seguridad</div><div><b>5 055 und</b>punto de reorden</div>
+</div>
+<p class="formula" style="margin:10px 0 0">ROP = d̄ × L + SS<br>EOQ = √(2·D·S / H) = 4&#160;710<br>Q ajustado = 4&#160;700 und</p>
+<p class="small" style="margin:8px 0 0">La regla compara stock disponible más órdenes en camino con el ROP. La orden queda como propuesta: una persona la aprueba antes de emitirla.</p>
+</div>
+</section>
+
+<section class="view" id="v-capacidad" aria-labelledby="h-capacidad">
+<h2 class="v" id="h-capacidad">¿Llego a la fecha comprometida?</h2>
+<p class="lead">El DSS usa el tiempo estándar por lote del Standard Work para comparar la carga pendiente con el tiempo disponible hasta la fecha del pedido. Prueba cambiar entre «Actual» y «Standard Work».</p>
+<div class="card">
+<span class="small" style="font-weight:600">Método de trabajo</span>
+<div class="seg" role="group" aria-label="Método de trabajo" style="margin-top:4px"><button type="button" id="m0" aria-pressed="false">Actual · 7,52 h/lote</button><button type="button" id="m1" aria-pressed="true">Standard Work · 6,70 h/lote</button></div>
+<label class="l" for="ots">Lotes pendientes antes del nuevo pedido <output id="ots-o">3</output></label>
+<input id="ots" type="range" min="0" max="8" step="1" value="3">
+<label class="l" for="dias">Días hábiles hasta la fecha comprometida <output id="dias-o">5</output></label>
+<input id="dias" type="range" min="1" max="5" step="1" value="5">
+<label class="l" for="hd">Horas productivas por día <output id="hd-o">7 h</output></label>
+<input id="hd" type="range" min="4" max="10" step="1" value="7">
+<div class="params" style="margin-top:10px">
+<div><b id="td">32 h</b>tiempo disponible T<sub>D</sub></div><div><b id="cl">33,5 h</b>carga C<sub>L</sub> con el nuevo lote</div>
+</div>
+<div class="verdict" id="vcap" role="status" aria-live="polite" style="margin-top:10px"></div>
+<p class="formula" style="margin:10px 0 0">H = T<sub>D</sub> − C<sub>L</sub> · C<sub>L</sub> = Σ T<sub>L</sub></p>
+<p class="small" style="margin:8px 0 0">Tiempos por lote: ciclo neto medio por OT simulado en Simio (As-Is 7,52 h; To-Be base 6,70 h). Horas por día, lotes y umbral de «riesgo» (holgura menor a un lote) son valores de ejemplo.</p>
+</div>
+</section>
+
+<section class="view" id="v-control" aria-labelledby="h-control">
+<h2 class="v" id="h-control">¿Qué revisar hoy?</h2>
+<p class="lead">El control cierra el ciclo: verifica que el stock del sistema sea el real antes de decidir.</p>
+<div class="card">
+<h3 style="margin:0 0 4px;font-size:17px">Exactitud del registro de inventario (ERI)</h3>
+<label class="l" for="reg">Stock registrado <output id="reg-o">1 200 und</output></label>
+<input id="reg" type="range" min="100" max="3000" step="50" value="1200">
+<label class="l" for="fis">Conteo físico <output id="fis-o">1 150 und</output></label>
+<input id="fis" type="range" min="0" max="3000" step="10" value="1150">
+<div class="verdict ok" id="veri" role="status" aria-live="polite" style="margin-top:10px"></div>
+<p class="formula" style="margin:10px 0 0">ERI = (1 − |físico − registrado| / registrado) × 100</p>
+</div>
+<h3 style="margin:14px 0 8px;font-size:18px">Alertas que contempla el diseño</h3>
+<div class="alert"><span class="ic" style="background:#FCE4E7;color:var(--red)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v5M12 18h.01"/></svg></span><div><b>Stock en el punto de reorden</b><div class="small">Propone una orden por Q; espera aprobación.</div></div></div>
+<div class="alert"><span class="ic" style="background:#FFF1D6;color:#7A4D00"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Pedido sin capacidad a tiempo</b><div class="small">Avisa cuando la holgura hasta la fecha comprometida es negativa.</div></div></div>
+<div class="alert"><span class="ic" style="background:#E3ECF7;color:var(--blue)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><b>Diferencia en el conteo cíclico</b><div class="small">Bloquea el registro hasta verificarlo físicamente.</div></div></div>
+<p class="small">Conteo cíclico: los ítems A se cuentan con más frecuencia que los B, y estos más que los C. Toda alerta queda registrada para seguimiento.</p>
+</section>
+
+<section class="view" id="v-integra" aria-labelledby="h-integra">
+<h2 class="v" id="h-integra">Un solo flujo de datos</h2>
+<p class="lead">El Standard Work estabiliza el proceso y entrega tiempos confiables; el DSS los usa junto con el inventario para decidir.</p>
+<div class="flow">
+<div class="st"><span class="n" style="background:var(--orange)">1</span><span><b>Standard Work + 5S</b><br><span class="small">SOP, tiempo estándar Westinghouse, control visual</span></span></div>
+<div class="ar" aria-hidden="true">↓</div>
+<div class="st"><span class="n" style="background:var(--orange)">2</span><span><b>Tiempo estándar por lote</b><br><span class="small">Capacidad, carga y holgura por línea</span></span></div>
+<div class="ar" aria-hidden="true">↓</div>
+<div class="st"><span class="n" style="background:var(--blue)">3</span><span><b>DSS en AppSheet</b><br><span class="small">Pedidos, inventario, OT y proveedores</span></span></div>
+<div class="ar" aria-hidden="true">↓</div>
+<div class="st"><span class="n" style="background:var(--blue)">4</span><span><b>Decisiones con validación humana</b><br><span class="small">Comprar, producir, controlar</span></span></div>
+<div class="ar" aria-hidden="true">↓</div>
+<div class="st"><span class="n" style="background:var(--green)">5</span><span><b>Entregas a tiempo</b><br><span class="small">OTD estimado 88,9 % (rango 83,7–92,3 %)</span></span></div>
+</div>
+<div class="card" style="margin-top:12px">
+<h3 style="margin:0 0 6px;font-size:17px">Resultados de la validación en Simio</h3>
+<table class="cmp"><thead><tr><th>Indicador</th><th>As-Is</th><th>To-Be</th></tr></thead><tbody>
+<tr><td>Ruptura de stock</td><td>9,14 %</td><td><b>2,82 %</b></td></tr>
+<tr><td>Nivel de servicio</td><td>91,80 %</td><td><b>97,66 %</b></td></tr>
+<tr><td>Ciclo neto por OT</td><td>7,52 h</td><td><b>6,70 h</b></td></tr>
+<tr><td>OTD (estimado)</td><td>75,1 %</td><td><b>88,9 %</b></td></tr>
+</tbody></table>
+<p class="small" style="margin:8px 0 0">IC 95 %: 540 réplicas (inventario) y 30 réplicas de 365 días (proceso).</p>
+</div>
+</section>
+<p class="foot">Ampuero Ramirez, X. M. y Bernaola Rivadeneyra, M. A. · Ingeniería Industrial, UPC, 2026. <a href="referencias.html">Referencias</a> · <a href="planta.html">Recorre la planta</a> · <a href="index.html">Inicio</a></p>
+</main>
+<nav class="tabs" role="tablist" aria-label="Módulos del DSS">
+<button role="tab" data-go="inicio" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-7 9 7v9H3z"/></svg>Inicio</button>
+<button role="tab" data-go="compras" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.4 11h11.2L21 7H7"/></svg>Compras</button>
+<button role="tab" data-go="capacidad" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/></svg>Capacidad</button>
+<button role="tab" data-go="control" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg>Control</button>
+<button role="tab" data-go="integra" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h16M12 4v16"/></svg>Integración</button>
+</nav>
+<script>
+var nf=new Intl.NumberFormat('es-PE');
+function fmt(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'\u00a0')}
+function go(id){document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id==='v-'+id)});document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.go===id)});window.scrollTo(0,0);try{history.replaceState(null,'','#'+id)}catch(e){}}
+document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.go)})});
+var SS=2208,ROP=5055,Q=4700,MAX=12000,DAILY=85406/365;
+var stk=document.getElementById('stk'),oc=0,oc0=document.getElementById('oc0'),oc1=document.getElementById('oc1');
+function seg(a,b,on){a.setAttribute('aria-pressed',on===0);b.setAttribute('aria-pressed',on===1)}
+document.getElementById('oc0').onclick=function(){oc=0;seg(oc0,oc1,0);compras()};
+document.getElementById('oc1').onclick=function(){oc=1;seg(oc0,oc1,1);compras()};
+function compras(){var s=+stk.value,pos=s+(oc?Q:0);document.getElementById('stk-o').textContent=fmt(s)+' und';
+var f=document.getElementById('fill');f.style.width=(s/MAX*100)+'%';f.style.background=s<=SS?'#C8102E':(s<=ROP?'#E8A21C':'#1E8A5A');
+document.getElementById('mk-ss').style.left=(SS/MAX*100)+'%';document.getElementById('mk-rop').style.left=(ROP/MAX*100)+'%';
+var v=document.getElementById('vrd');
+if(pos<=ROP){v.className='verdict bad';v.innerHTML='<div><b>Proponer orden de compra: '+fmt(Q)+' und</b>Stock más órdenes en camino ('+fmt(pos)+') está en o bajo el ROP. Pendiente de aprobación.</div>'}
+else if(s<=ROP){v.className='verdict warn';v.innerHTML='<div><b>Sin nueva orden</b>El stock está bajo el ROP, pero la orden en camino ya lo cubre ('+fmt(pos)+' und).</div>'}
+else{v.className='verdict ok';v.innerHTML='<div><b>Sin acción</b>Stock por encima del punto de reorden.</div>'}
+document.getElementById('cov').textContent='Cobertura aproximada: '+Math.floor(s/DAILY)+' días de demanda promedio (dato de ejemplo).'}
+stk.addEventListener('input',compras);compras();
+var tl=6.70,m0=document.getElementById('m0'),m1=document.getElementById('m1');
+m0.onclick=function(){tl=7.52;seg(m0,m1,0);cap()};m1.onclick=function(){tl=6.70;seg(m0,m1,1);cap()};
+['ots','dias','hd'].forEach(function(id){document.getElementById(id).addEventListener('input',cap)});
+function one(n){return n.toFixed(1).replace('.',',')}
+function cap(){var ots=+document.getElementById('ots').value,d=+document.getElementById('dias').value,h=+document.getElementById('hd').value;
+document.getElementById('ots-o').textContent=ots;document.getElementById('dias-o').textContent=d;document.getElementById('hd-o').textContent=h+' h';
+var TD=d*h,CL=(ots+1)*tl,H=TD-CL;document.getElementById('td').textContent=TD+' h';document.getElementById('cl').textContent=one(CL)+' h';
+var v=document.getElementById('vcap');
+if(H<0){v.className='verdict bad';v.innerHTML='<div><b>Sin capacidad · holgura '+one(H).replace('-','−')+' h</b>El pedido no entra a tiempo: reprogramar o negociar la fecha.</div>'}
+else if(H<tl){v.className='verdict warn';v.innerHTML='<div><b>Riesgo · holgura '+one(H)+' h</b>Entra, pero no queda margen para otro lote.</div>'}
+else{v.className='verdict ok';v.innerHTML='<div><b>Disponible · holgura '+one(H)+' h</b>Hay capacidad para cumplir la fecha comprometida.</div>'}}
+cap();
+var reg=document.getElementById('reg'),fis=document.getElementById('fis');
+function eri(){var r=+reg.value,f=+fis.value;document.getElementById('reg-o').textContent=fmt(r)+' und';document.getElementById('fis-o').textContent=fmt(f)+' und';
+var e=Math.max(0,(1-Math.abs(f-r)/r)*100);var v=document.getElementById('veri');
+if(f===r){v.className='verdict ok';v.innerHTML='<div><b>ERI 100 %</b>El registro coincide con el conteo.</div>'}
+else{v.className='verdict warn';v.innerHTML='<div><b>ERI '+e.toFixed(1).replace('.',',')+' % · diferencia '+fmt(Math.abs(f-r))+' und</b>Registro bloqueado hasta verificar físicamente.</div>'}}
+reg.addEventListener('input',eri);fis.addEventListener('input',eri);eri();
+function fromHash(){var h=(location.hash||'').slice(1);if(['inicio','compras','capacidad','control','integra'].indexOf(h)>=0)go(h)}window.addEventListener('hashchange',fromHash);fromHash();
+</script>
+</body>
+</html>

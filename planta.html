@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recorre la planta</title>
+<meta name="description" content="Recorrido fotográfico del proceso de pintura base solvente en una MYPE peruana: molienda, completado, envasado, empaquetado y almacenado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="estilo.css">
+<style>
+.prog{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:4px 0 10px}
+.prog button{height:40px;border:0;border-radius:8px;background:#E3DCD0;color:var(--muted);font-weight:700;font-family:"Barlow Condensed",sans-serif;font-size:15px;cursor:pointer}
+.prog button[aria-current="step"]{background:var(--orange);color:#fff}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;padding-bottom:4px}
+.track::-webkit-scrollbar{display:none}
+.step{flex:0 0 100%;scroll-snap-align:start;background:var(--card);border:1.5px solid var(--line);border-radius:18px;overflow:hidden}
+.ph{position:relative;aspect-ratio:3/4;max-height:58vh;width:100%;background:#ddd}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .n{position:absolute;left:12px;top:12px;background:var(--orange);color:#fff;font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:26px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid #fff}
+.ph .alt{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}
+.ph .alt button{width:56px;height:56px;border-radius:10px;border:3px solid #fff;padding:0;overflow:hidden;cursor:pointer;background:#ccc}
+.ph .alt img{width:100%;height:100%;object-fit:cover}
+.body{padding:14px}
+.body h2{margin:0;font-family:"Barlow Condensed",sans-serif;font-size:30px;line-height:1}
+.body .what{margin:6px 0 10px}
+.tag{display:flex;gap:10px;align-items:flex-start;border-radius:12px;padding:10px 12px;margin-top:8px;font-size:15px}
+.tag b{display:block}
+.sw{background:#FDEFE6;color:#7A3008}.dss{background:#E3ECF7;color:#123E70}.nc{background:#F1EEE8;color:#4A5361}
+.navb{display:flex;gap:8px;margin:12px 0}
+.navb .btn{flex:1}
+.intro{background:var(--navy);color:#fff;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;flex:0 0 100%;scroll-snap-align:start}
+.intro h2{margin:0;font-family:"Barlow Condensed",sans-serif;font-size:32px;line-height:1.02}
+.intro .kp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.intro .kp div{background:#1E3F6E;border-radius:12px;padding:10px}
+.intro .kp b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:28px;line-height:1}
+.intro .kp span{font-size:13px;color:#C9D6EA}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<img src="img/logo_diamante.png" alt="Pinturas Diamante" style="height:34px">
+<div class="t"><p class="k">Recorrido fotográfico</p><h1>Recorre la planta</h1></div>
+</div></header>
+<main class="wrap">
+<nav class="nav" aria-label="Recursos del póster"><a href="index.html">Inicio</a><a href="referencias.html">Referencias</a><a href="dss.html">Explora el DSS</a><a href="planta.html" aria-current="page">Recorre la planta</a></nav>
+<div class="prog" id="prog" role="group" aria-label="Etapas del recorrido"></div>
+<div class="track" id="track">
+<section class="intro" aria-label="Inicio del recorrido">
+<p class="k" style="margin:0;font-size:13px;letter-spacing:.08em;color:#C9D6EA">PINTURA BASE SOLVENTE · ESMALTE SINTÉTICO</p>
+<h2>Sigue un lote desde la molienda hasta el almacén</h2>
+<p style="margin:0;color:#DDE6F2">La línea base solvente concentra el 64 % del volumen producido. Cada orden de trabajo (OT) fabrica un lote de 200, 300 o 500 galones que luego se envasa en varias presentaciones.</p>
+<div class="kp"><div><b>5</b><span>etapas del proceso</span></div><div><b>7,52 → 6,70 h</b><span>ciclo neto por OT (simulado)</span></div><div><b>17,5 %</b><span>tiempo de más medido en molienda y completado</span></div><div><b>11</b><span>roturas de stock de envases (may–jul 2026)</span></div></div>
+<p style="margin:0;font-size:14px;color:#C9D6EA">Desliza o usa los botones para avanzar.</p>
+</section>
+</div>
+<div class="navb"><button class="btn" id="prev" type="button">← Anterior</button><button class="btn primary" id="next" type="button">Siguiente →</button></div>
+<p class="foot">Fotografías reales de la planta (Carabayllo, Lima), 2026. Los tiempos por etapa provienen de la simulación en Simio del escenario base. <a href="dss.html">Explora el DSS</a> · <a href="referencias.html">Referencias</a></p>
+</main>
+<script>
+var S=[
+{n:'Molienda',img:['img/molienda.jpg','img/molienda2.jpg'],what:'Se cargan los materiales en el tanque, el dispersor muele la mezcla y al final se filtra y se limpia el equipo.',tags:[['sw','Aquí actúa el Standard Work','SOP, tiempo estándar y 5S reducen el tiempo neto de 2,31 h a 1,89 h por OT (−18,2 %).']]},
+{n:'Completado',img:['img/completado.jpg'],what:'Se agregan los materiales restantes y se completa la mezcla hasta lograr el color y la viscosidad del producto.',tags:[['sw','Aquí actúa el Standard Work','Control visual de grano y viscosidad; tiempo neto −17,7 % en el escenario base.']]},
+{n:'Envasado',img:['img/envasado.jpg'],what:'La pintura baja desde el completado y se llena envase por envase desde la válvula de descarga.',tags:[['dss','Aquí impacta el DSS','Sin envases la estación se detiene: hubo 11 roturas de stock en tres meses. El DSS dispara la compra en el punto de reorden (5 055 und).'],['nc','Sin cambio en el método','La simulación no modifica esta etapa.']]},
+{n:'Empaquetado',img:['img/empaquetado.jpg'],what:'Las latas se agrupan por presentación, se separan con cartón y se envuelven con film para su traslado.',tags:[['nc','Sin cambio en el método','Etapa con pocos pasos; la propuesta no la interviene.']]},
+{n:'Almacenado',img:['img/almacen.jpg','img/almacen2.jpg'],what:'El producto terminado se apila en pallets por familia en el almacén, listo para el picking y el despacho.',tags:[['dss','Aquí impacta el DSS','Visibilidad del stock de producto terminado, conteo cíclico por clase ABC y alertas antes de comprometer un pedido.']]}
+];
+var track=document.getElementById('track');
+S.forEach(function(s,i){var el=document.createElement('section');el.className='step';el.setAttribute('aria-label','Etapa '+(i+1)+': '+s.n);
+var alt=s.img.length>1?'<div class="alt">'+s.img.map(function(src,j){return '<button type="button" aria-label="Ver foto '+(j+1)+' de '+s.n+'" data-src="'+src+'"><img src="'+src+'" alt=""></button>'}).join('')+'</div>':'';
+el.innerHTML='<div class="ph"><img src="'+s.img[0]+'" alt="'+s.n+' en la planta" loading="lazy"><span class="n">'+(i+1)+'</span>'+alt+'</div><div class="body"><h2>'+s.n+'</h2><p class="what">'+s.what+'</p>'+s.tags.map(function(t){return '<div class="tag '+t[0]+'"><span><b>'+t[1]+'</b>'+t[2]+'</span></div>'}).join('')+'</div>';
+track.appendChild(el);
+el.querySelectorAll('.alt button').forEach(function(b){b.onclick=function(){el.querySelector('.ph > img').src=b.dataset.src}})});
+var prog=document.getElementById('prog'),labels=['Inicio'].concat(S.map(function(s,i){return String(i+1)}));
+labels.forEach(function(l,i){var b=document.createElement('button');b.type='button';b.textContent=l;b.setAttribute('aria-label',i?('Etapa '+i+': '+S[i-1].n):'Inicio');b.onclick=function(){to(i)};prog.appendChild(b)});
+function cur(){return Math.round(track.scrollLeft/(track.clientWidth+12))}
+function to(i){i=Math.max(0,Math.min(labels.length-1,i));track.scrollTo({left:i*(track.clientWidth+12),behavior:'smooth'})}
+function mark(){var c=cur();prog.querySelectorAll('button').forEach(function(b,i){if(i===c)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});document.getElementById('prev').disabled=false;document.getElementById('next').textContent=c===labels.length-1?'Volver al inicio':'Siguiente →'}
+document.getElementById('prev').onclick=function(){to(cur()-1)};
+document.getElementById('next').onclick=function(){var c=cur();to(c===labels.length-1?0:c+1)};
+var t;track.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(mark,60)});mark();
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Referencias de la investigación</title>
+<meta name="description" content="Referencias bibliográficas de la tesis: Standard Work y DSS para incrementar el OTD en una MYPE fabricante de pinturas (UPC).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="estilo.css">
+<style>
+.intro{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px}
+.ref .tp{font-size:13px;font-weight:700;border-radius:8px;padding:3px 8px}
+.ref .tp{font-size:13px;font-weight:700;border-radius:8px;padding:3px 8px}
+.intro div{display:flex;align-items:baseline;gap:6px;background:#fff;border-radius:999px;padding:5px 12px;border:1.5px solid var(--line)}
+.intro b{font-family:"Barlow Condensed",sans-serif;font-size:20px;line-height:1}
+.intro span{font-size:14px;color:var(--muted)}
+.tools{position:sticky;top:0;background:var(--paper);padding:8px 0 10px;z-index:2;border-bottom:1.5px solid var(--line)}
+.search{width:100%;min-height:46px;border:2px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;background:#fff}
+.search:focus{outline:none;border-color:var(--blue)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-top:8px;scrollbar-width:none}
+.chips button{flex-shrink:0;min-height:38px;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+section.cat{margin-top:18px}
+section.cat h2{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-family:"Barlow Condensed",sans-serif;font-size:24px;line-height:1.1}
+section.cat h2 i{width:12px;height:24px;border-radius:3px;display:inline-block;flex-shrink:0}
+.ref{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px}
+.ref .who{font-weight:700}
+.ref .ti{margin:2px 0 4px}
+.ref .src{color:var(--muted);font-size:15px}
+.ref .src em{color:var(--ink)}
+.ref .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.ref .doi{font-size:14px;font-weight:600;text-decoration:none;border:1.5px solid var(--blue);border-radius:999px;padding:4px 10px;word-break:break-all}
+.ref .use{font-size:13px;color:#5A3A00;background:#FFF2C6;border-radius:8px;padding:3px 8px}
+.ref .key{font-size:13px;color:#fff;background:var(--red);border-radius:8px;padding:3px 8px;font-weight:600}
+.empty{padding:24px 0;color:var(--muted)}
+@media (max-width:520px){.top h1{font-size:22px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<img src="img/logo_upc.png" alt="UPC">
+<div class="t"><p class="k">Póster de tesis · Ingeniería Industrial UPC</p><h1>Referencias</h1></div>
+</div></header>
+<main class="wrap">
+<nav class="nav" aria-label="Recursos del póster"><a href="index.html">Inicio</a><a href="referencias.html" aria-current="page">Referencias</a><a href="dss.html">Explora el DSS</a><a href="planta.html">Recorre la planta</a></nav>
+<p style="margin:4px 0 8px">Fuentes de la investigación «Propuesta de mejora para incrementar las entregas a tiempo mediante Standard Work y un sistema de soporte a la decisión para la gestión de inventarios en una MYPE fabricante de pinturas», ordenadas según la parte del trabajo que sustentan.</p>
+<div class="intro" id="stats"></div>
+<div class="tools">
+<label for="q" class="cond" style="font-size:15px;font-weight:700;color:var(--muted)">Buscar por autor, título o tema</label>
+<input id="q" class="search" type="search" placeholder="Ejemplo: Simio, 5S, inventario" autocomplete="off">
+<div class="chips" id="chips" role="group" aria-label="Filtrar por tema"></div>
+</div>
+<div id="list"></div>
+<p class="foot">Formato APA 7. Cada fuente indica su tipo; los artículos científicos enlazan a su DOI y las fuentes de gobierno, empresas e informes enlazan a su página oficial. Las marcadas como «clave» sustentan los resultados comparados en el póster.<br>Ampuero Ramirez, X. M. y Bernaola Rivadeneyra, M. A. · Asesor: Diaz Aliaga, J. T. · UPC, 2026.</p>
+</main>
+<script>
+var CATS=[
+{id:'ctx',n:'Contexto del sector',c:'#16325C'},
+{id:'otd',n:'Problema: entregas a tiempo',c:'#C8102E'},
+{id:'sw',n:'Componente 1 · Standard Work',c:'#E8601C'},
+{id:'dss',n:'Componente 2 · DSS e inventarios',c:'#1F5FA8'},
+{id:'ind',n:'Entorno industrial',c:'#6A3FA0'},
+{id:'sim',n:'Validación por simulación',c:'#1E8A5A'},
+{id:'norm',n:'Normativa y estándares',c:'#4A5361'}];
+var R=[
+{tp:'gob',c:'ctx',a:'Ministerio de la Producción',y:'2026',t:'Sector Manufactura: Resultados del desempeño de la industria manufacturera – Año 2025 [Reporte coyuntural]',s:'PRODUCE',u:'https://www.producempresarial.pe/wp-content/uploads/2026/03/Reporte-Sectorial-de-Desempeno-del-Sector-Manufactura-Ano-2025-.pdf',use:'Caída de 15,8 % en pinturas y barnices; 98,9 % MYPE'},
+{tp:'gob',c:'ctx',a:'Ministerio de la Producción',y:'2026, 20 de mayo',t:'PBI Manufactura creció 3.6 % en marzo de 2026 y contribuyó con más de S/6170 millones a la economía nacional [Nota de prensa]',s:'Plataforma del Estado Peruano',u:'https://www.gob.pe/institucion/produce/noticias/1394260-pbi-manufactura-crecio-3-6-en-marzo-de-2026-y-contribuyo-con-mas-de-s-6170-millones-a-la-economia-nacional',use:'Crecimiento del PBI manufactura'},
+{tp:'gob',c:'ctx',a:'Ministerio de la Producción',y:'2026, 8 de junio',t:'Ministro de la Producción: las MYPE representan el 99 % de las empresas del país y son clave para impulsar un Perú más competitivo [Nota de prensa]',s:'Plataforma del Estado Peruano',u:'https://www.gob.pe/institucion/produce/noticias/1403508-ministro-de-la-produccion-las-mype-representan-el-99-de-las-empresas-del-pais-y-son-clave-para-impulsar-un-peru-mas-competitivo',use:'Representatividad MYPE'},
+{tp:'gob',c:'ctx',a:'Instituto Nacional de Estadística e Informática',y:'2026, 15 de septiembre',t:'Producción nacional creció 3,56 % en julio de 2026 [Nota de prensa]',s:'Gob.pe',u:'https://www.gob.pe/institucion/inei/noticias/1444369-produccion-nacional-crecio-3-56-en-julio-de-2026',use:'Manufactura −1,81 % interanual'},
+{tp:'mer',c:'ctx',a:'Mordor Intelligence',y:'2026',t:'Paints and coatings market size & share analysis – Growth trends and forecast (2026–2031)',s:'Mordor Intelligence',u:'https://www.mordorintelligence.com/industry-reports/paints-and-coatings-market',use:'Mercado global de pinturas'},
+{tp:'mer',c:'ctx',a:'The Business Research Company',y:'2026',t:'Paints and coatings market report 2026',s:'Research and Markets',u:'https://www.researchandmarkets.com/reports/5781287/paints-coatings-market-report',use:'Demanda del mercado de pinturas'},
+{tp:'org',c:'ctx',a:'United Nations Industrial Development Organization',y:'2026',t:'World manufacturing production and trade: Quarterly report, Q1 2026',s:'UNIDO Statistics Portal',u:'https://stat.unido.org/publications/qiip',use:'Producción manufacturera global'},
+{tp:'org',c:'otd',a:'Tractian',y:'2026',t:'Entrega a tiempo [Glosario]',s:'Tractian',u:'https://tractian.com/es/glosario/on-time-delivery',use:'Referencia OTD 90–95 %'},
+{tp:'org',c:'otd',a:'Association for Supply Chain Management',y:'2022',t:'Supply Chain Operations Reference (SCOR) Digital Standard (Versión 12.0)',s:'ASCM',u:'https://www.ascm.org/learning-development/scor-digital-standard/',use:'Definición y cálculo del OTD'},
+{tp:'rev',c:'otd',a:'Carvalho, H., Naghshineh, B., Govindan, K., & Cruz-Machado, V.',y:'2022',t:'The resilience of on-time delivery to capacity and material shortages: An empirical investigation in the automotive supply chain',s:'<em>Computers &amp; Industrial Engineering, 171</em>, 108375',d:'10.1016/j.cie.2022.108375',use:'Nivel de cumplimiento OTD'},
+{tp:'rev',c:'otd',a:'Rokoss, A., Syberg, M., Tomidei, L., Hülsing, C., Deuse, J., & Schmidt, M.',y:'2024',t:'Case study on delivery time determination using a machine learning approach in small batch production companies',s:'<em>Journal of Intelligent Manufacturing, 35</em>(8), 3937–3958',d:'10.1007/s10845-023-02290-2',use:'Precisión del lead time'},
+{tp:'rev',c:'otd',a:'Bergenhenegouwen, T., Kasper, H., & Bokhorst, J. A. C.',y:'2024',t:'Managing premature idleness in high-variety manufacturing',s:'<em>Flexible Services and Manufacturing Journal, 36</em>(4), 1201–1232',d:'10.1007/s10696-023-09521-x',use:'Tiempos ociosos'},
+{tp:'rev',c:'otd',a:'Jonsson, P., Öhlin, J., Shurrab, H., Bystedt, J., Sheikh Muhammad, A., & Verendel, V.',y:'2024',t:'What are the root causes of material delivery schedule inaccuracy in supply chains?',s:'<em>International Journal of Operations &amp; Production Management, 44</em>(13), 34–68',d:'10.1108/IJOPM-12-2022-0806',use:'Variabilidad del abastecimiento'},
+{tp:'rev',c:'otd',a:'Mundt, C., & Lödding, H.',y:'2025',t:'Coping with the uncertainties of make-to-order production: A new approach for determining reliable delivery times with the throughput diagram',s:'<em>Production Planning &amp; Control, 36</em>(8), 1110–1136',d:'10.1080/09537287.2024.2344066',use:'Fechas de entrega confiables'},
+{tp:'rev',c:'otd',a:'Puspitawati, L., Lhutfi, I., & Qudratov, I.',y:'2024',t:'Enhancing inventory efficiency: The role of Strategic Management Accounting and Integrated Management Accounting Information systems',s:'<em>Cogent Business &amp; Management, 11</em>(1), 2429801',d:'10.1080/23311975.2024.2429801',use:'Información integrada de inventarios'},
+{tp:'rev',c:'otd',a:'Galindo-Alvarez, K., & Macassi-Jauregui, I.',y:'2023',t:'Inventory management model integrating Lean and FLD to increase service level in an automotive retail: An empirical research in Peru',s:'<em>International Journal of Modeling and Optimization, 13</em>(3), 72–79',d:'10.7763/IJMO.2023.V13.828',use:'Nivel de servicio en MYPE peruana'},
+{tp:'con',c:'sw',k:1,a:'Montoya, L., Avalos, M., & Macassi, I.',y:'2023',t:'Reduction of delivery times for orders in small and medium-sized paint businesses based on Standard Work and Raw Material Management',s:'<em>Proceedings of the 21st LACCEI International Multi-Conference for Engineering, Education and Technology</em>',d:'10.18687/LACCEI2023.1.1.1263',use:'Standard Work y MP en MYPE de pinturas: rotura 6,52 → 0,22 %'},
+{tp:'rev',c:'sw',k:1,a:'Shahriar, M. M., Parvez, M. S., Islam, M. A., & Talapatra, S.',y:'2022',t:'Implementation of 5S in a plastic bag manufacturing industry: A case study',s:'<em>Cleaner Engineering and Technology, 8</em>, 100488',d:'10.1016/j.clet.2022.100488',use:'5S: −8 % a −18 % del tiempo operacional'},
+{tp:'rev',c:'sw',a:'Ahmadi, T., & Rahmani, N.',y:'2024',t:'How to develop standardized work for business processes in the transactional office environment',s:'<em>Total Quality Management &amp; Business Excellence, 35</em>(5–6), 612–629',d:'10.1080/14783363.2023.2203377',use:'Estandarización de procesos'},
+{tp:'rev',c:'sw',a:'Trubetskaya, A., McSweeney, B., & McDermott, O.',y:'2023',t:'Implementing a customised Lean Six Sigma methodology at a compound animal feed manufacturer in Ireland',s:'<em>International Journal of Lean Six Sigma, 14</em>(5), 1075–1098',d:'10.1108/IJLSS-08-2022-0169',use:'Variabilidad y mejora continua'},
+{tp:'rev',c:'sw',a:'Naughton, E., Moran, R., Kharub, M., Sá, J. C., & McDermott, O.',y:'2024',t:'A structured model for continuous improvement methodology deployment and sustainment: A case study',s:'<em>Heliyon, 10</em>(21), e40034',d:'10.1016/j.heliyon.2024.e40034',use:'Sostenibilidad de la mejora'},
+{tp:'rev',c:'sw',a:'Normand, A., & Bradley, T. H.',y:'2024',t:'An experimental investigation of Lean Six Sigma philosophies in a high-mix low-volume manufacturing environment',s:'<em>PLOS ONE, 19</em>(5), e0299498',d:'10.1371/journal.pone.0299498',use:'Lean en alta variedad'},
+{tp:'rev',c:'sw',a:'Nelfiyanti, N., Md Yasir, A. S. H., Mohamed, N., & Ahmad, M. F. A.',y:'2025',t:'Adoption and impact of Quick Response Manufacturing across industry sector',s:'<em>Operations Research Forum, 6</em>(2)',d:'10.1007/s43069-025-00463-8',use:'Reducción del lead time'},
+{tp:'rev',c:'sw',a:'Salins, S. S., Zaidi, S. A. R., Deepak, D., & Sachidananda, H. K.',y:'2024',t:'Design of an improved layout for a steel processing facility using SLP and lean manufacturing techniques',s:'<em>International Journal on Interactive Design and Manufacturing, 18</em>, 3827–3848',d:'10.1007/s12008-024-01828-9',use:'Recorridos y distribución'},
+{tp:'con',c:'dss',k:1,a:'Concha-Rojas, G., Macassi-Jauregui, I., & León-Chavarri, C.',y:'2023',t:'Improving warehouse management processes to ensure on-time delivery of paprika-based products',s:'<em>Proceedings of the 21st LACCEI International Multi-Conference for Engineering, Education and Technology</em>',d:'10.18687/LACCEI2023.1.1.1230',use:'OTD 76,5 → 89,03 % con conteo cíclico ABC'},
+{tp:'rev',c:'dss',a:'Framiñán, J. M., Guerrero, F., Pérez-González, P., & Toscano, S.',y:'2024',t:'Matching inventory and demand in a Fast Moving Consumer Goods company: A Decision Support System',s:'<em>Computers &amp; Industrial Engineering</em>',d:'10.1016/j.cie.2024.110377',use:'Asignación de inventario a pedidos'},
+{tp:'rev',c:'dss',a:'Teerasoponpong, S., & Sopadang, A.',y:'2022',t:'Decision support system for adaptive sourcing and inventory management in small- and medium-sized enterprises',s:'<em>Robotics and Computer-Integrated Manufacturing, 73</em>, 102226',use:'DSS de inventarios en PYME'},
+{tp:'rev',c:'dss',a:'Sá, S., Carvalho, M. S., & Gonçalves, J. N. C.',y:'2025',t:'A decision support system to define new inventory management policies in companies transitioning towards data-driven decision-making',s:'<em>Procedia Computer Science, 263</em>, 25–33',d:'10.1016/j.procs.2025.07.004',use:'Stock de seguridad y punto de reorden'},
+{tp:'rev',c:'dss',a:'Mahmoodi, E., Fathi, M., Tavana, M., Ghobakhloo, M., & Ng, A. H. C.',y:'2024',t:'Data-driven simulation-based decision support system for resource allocation in Industry 4.0 and smart manufacturing',s:'<em>Journal of Manufacturing Systems, 72</em>, 287–307',d:'10.1016/j.jmsy.2023.11.019',use:'DSS basado en simulación'},
+{tp:'rev',c:'dss',a:'Zeiträg, Y., Figueira, J. R., & Pereira, M. A.',y:'2024',t:'A web-based interactive decision support system for a multi-objective lot-sizing and production scheduling model',s:'<em>International Journal of Production Economics, 271</em>, 109209',d:'10.1016/j.ijpe.2024.109209',use:'DSS interactivo y tamaño de lote'},
+{tp:'rev',c:'dss',a:'Cantini, A., Peron, M., De Carlo, F., & Sgarbossa, F.',y:'2024',t:'A decision support system for configuring spare parts supply chains considering different manufacturing technologies',s:'<em>International Journal of Production Research, 62</em>(8), 3023–3043',d:'10.1080/00207543.2022.2041757',use:'Configuración de inventarios'},
+{tp:'rev',c:'dss',a:'Grützner, L., Voss, D., & Breitner, M. H.',y:'2025',t:'Mature inventory management for supply chain automation: An interlinked process-reference model',s:'<em>Electronic Markets, 35</em>(1), 34',d:'10.1007/s12525-025-00783-x',use:'Políticas por grupo de SKU'},
+{tp:'rev',c:'dss',a:'Damand, D., Lahrichi, Y., & Barth, M.',y:'2025',t:'A first optimization approach to parameterize demand-driven MRP in the presence of multiple products and finite capacity',s:'<em>Flexible Services and Manufacturing Journal, 37</em>(2)',d:'10.1007/s10696-024-09536-y',use:'Buffers y reposición'},
+{tp:'rev',c:'dss',a:'Woschank, M., Dallasega, P., König, A., & Hoffelner, M.',y:'2024',t:'Potentials of using real-time data to increase the update frequency of production planning and control strategies in MTO: A discrete event simulation study',s:'<em>Flexible Services and Manufacturing Journal, 36</em>(3), 760–779',d:'10.1007/s10696-024-09550-0',use:'Datos en tiempo real'},
+{tp:'rev',c:'dss',a:'Rad, F. F., Oghazi, P., Onur, İ., & Kordestani, A.',y:'2025',t:'Adoption of AI-based order picking in warehouse: Benefits, challenges, and critical success factors',s:'<em>Review of Managerial Science, 19</em>, 3495–3540',d:'10.1007/s11846-025-00858-1',use:'Preparación de pedidos'},
+{tp:'rev',c:'ind',a:'Ovalle, D.',y:'2025',t:'Optimal reactive operation of general topology supply chain and manufacturing networks under disruptions',s:'<em>AIChE Journal, 71</em>(7), e18833',d:'10.1002/aic.18833',use:'Manufactura química'},
+{tp:'rev',c:'ind',a:'Liang, T., Zhou, L., & Jiang, Z.',y:'2025',t:'Integrated scheduling of production and material delivery for the intelligent manufacturing system',s:'<em>International Journal of Production Research, 63</em>(3), 882–903',d:'10.1080/00207543.2024.2363435',use:'Producción y entrega de materiales'},
+{tp:'rev',c:'ind',a:'Madi, F., Al-Bazi, A., Buckley, S., & Atiya, A.',y:'2024',t:'An agent-based heuristics optimisation model for production scheduling of make-to-stock connector plates manufacturing systems',s:'<em>Soft Computing, 28</em>(7), 5899–5919',d:'10.1007/s00500-023-09506-w',use:'Producción contra stock'},
+{tp:'rev',c:'ind',a:'Kumar, D., Soni, G., Mangla, S. K., Kazancoglu, Y., & Rathore, A. P. S.',y:'2025',t:'A machine learning-based hybrid approach for maximizing supply chain reliability in a pharmaceutical supply chain',s:'<em>Computers &amp; Industrial Engineering, 200</em>, 110834',d:'10.1016/j.cie.2024.110834',use:'Confiabilidad de proveedores'},
+{tp:'rev',c:'ind',a:'Pabolu, V. K. R., Shrivastava, D., & Kulkarni, M. S.',y:'2024',t:'Controlling and optimization of on-time delivery for assemble-to-order production system',s:'<em>IFAC-PapersOnLine</em>, 161–166',d:'10.1016/j.ifacol.2024.05.028',use:'Optimización del OTD'},
+{tp:'lib',c:'sim',a:'Law, A. M.',y:'2015',t:'Simulation modeling and analysis (5.ª ed.)',s:'McGraw-Hill',use:'Verificación, validación y réplicas'},
+{tp:'lib',c:'sim',a:'Banks, J., Carson, J. S., II, Nelson, B. L., & Nicol, D. M.',y:'2010',t:'Discrete-event system simulation (5.ª ed.)',s:'Pearson',use:'Fases de la simulación'},
+{tp:'lib',c:'sim',a:'Kelton, W. D., Smith, J. S., & Sturrock, D. T.',y:'2015',t:'Simio and simulation: Modeling, analysis, applications (4.ª ed.)',s:'Simio LLC',use:'Modelado en Simio'},
+{tp:'rev',c:'sim',a:'Sargent, R. G.',y:'2013',t:'Verification and validation of simulation models',s:'<em>Journal of Simulation, 7</em>(1), 12–24',use:'Criterios de validación'},
+{tp:'norma',c:'norm',a:'Congreso de la República del Perú',y:'2011',t:'Ley N.º 29783, Ley de Seguridad y Salud en el Trabajo',s:'Diario Oficial El Peruano',u:'https://www.gob.pe/institucion/congreso-de-la-republica/normas-legales/229188-29783',use:'Condiciones seguras en Standard Work'},
+{tp:'norma',c:'norm',a:'Ministerio de Trabajo y Promoción del Empleo',y:'2012',t:'Decreto Supremo N.º 005-2012-TR, Reglamento de la Ley N.º 29783',s:'Diario Oficial El Peruano',u:'https://www.gob.pe/institucion/mtpe/normas-legales/287310-005-2012-tr',use:'Señalización y orden del área'},
+{tp:'norma',c:'norm',a:'Congreso de la República del Perú',y:'2005',t:'Ley N.º 28611, Ley General del Ambiente',s:'Diario Oficial El Peruano',u:'https://www.minam.gob.pe/disposiciones/ley-n-28611/',use:'Mermas y sobrestock'},
+{tp:'norma',c:'norm',a:'Ministerio del Ambiente',y:'2016',t:'Decreto Legislativo N.º 1278, Ley de Gestión Integral de Residuos Sólidos',s:'Diario Oficial El Peruano',u:'https://www.minam.gob.pe/disposiciones/decreto-legislativo-n-1278/',use:'Rotación PEPS y residuos'},
+{tp:'norma',c:'norm',a:'Ministerio de Transportes y Comunicaciones',y:'2008',t:'Decreto Supremo N.º 021-2008-MTC, Reglamento Nacional de Transporte Terrestre de Materiales y Residuos Peligrosos',s:'Diario Oficial El Peruano',u:'https://www.gob.pe/institucion/mtc/normas-legales/258381-021-2008-mtc',use:'Despacho de pinturas y solventes'},
+{tp:'norma',c:'norm',a:'Instituto Nacional de Calidad',y:'2021',t:'NTP 319.622:2021. Industria de la pintura y el color: Directrices para el almacenamiento y manejo',s:'INACAL',use:'Almacenamiento de insumos y PT'},
+{tp:'norma',c:'norm',a:'Instituto Nacional de Calidad',y:'2015',t:'NTP-ISO 9001:2015. Sistemas de gestión de la calidad: Requisitos',s:'INACAL',use:'Procesos controlados y trazabilidad'}
+];
+var TP={rev:['Revista científica','#1F5FA8','#E3ECF7'],con:['Congreso','#6A3FA0','#EFE8F8'],lib:['Libro','#1E8A5A','#E6F4EC'],gob:['Gobierno','#16325C','#E4E9F2'],norma:['Norma legal o técnica','#4A5361','#ECEAE6'],mer:['Informe de mercado','#9A3D0B','#FDEFE6'],org:['Organización','#7A4D00','#FFF2C6']};
+var state={q:'',cat:'all'};
+function esc(s){return String(s).replace(/[&<>"]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]})}
+function stats(){var c={};R.forEach(function(r){c[r.tp]=(c[r.tp]||0)+1});var h='';['rev','con','lib','gob','norma','mer','org'].forEach(function(k){if(c[k])h+='<div><b style="color:'+TP[k][1]+'">'+c[k]+'</b><span>'+TP[k][0]+(c[k]>1&&k!=='norma'?'':'')+'</span></div>'});document.getElementById('stats').innerHTML=h}
+function chips(){var h='<button type="button" data-c="all" aria-pressed="'+(state.cat==='all')+'">Todas</button>';CATS.forEach(function(c){h+='<button type="button" data-c="'+c.id+'" aria-pressed="'+(state.cat===c.id)+'">'+c.n+'</button>'});var el=document.getElementById('chips');el.innerHTML=h;el.querySelectorAll('button').forEach(function(b){b.onclick=function(){state.cat=b.getAttribute('data-c');chips();render()}})}
+function render(){var q=state.q.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');var h='',n=0;CATS.forEach(function(c){if(state.cat!=='all'&&state.cat!==c.id)return;var items=R.filter(function(r){if(r.c!==c.id)return false;if(!q)return true;var t=(r.a+' '+r.y+' '+r.t+' '+r.s+' '+(r.use||'')).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');return t.indexOf(q)>=0});if(!items.length)return;n+=items.length;h+='<section class="cat"><h2><i style="background:'+c.c+'"></i>'+c.n+' <span style="font-size:16px;color:var(--muted);font-family:Barlow,sans-serif;font-weight:600">('+items.length+')</span></h2>';items.forEach(function(r){var link=r.d?'https://doi.org/'+r.d:r.u;h+='<article class="ref"><div><span class="who">'+esc(r.a)+'</span> ('+esc(r.y)+').</div><div class="ti">'+esc(r.t)+'.</div><div class="src">'+r.s+'.</div><div class="row">'+'<span class="tp" style="color:'+TP[r.tp][1]+';background:'+TP[r.tp][2]+'">'+TP[r.tp][0]+'</span>'+(r.k?'<span class="key">Clave en el póster</span>':'')+(r.use?'<span class="use">'+esc(r.use)+'</span>':'')+(link?'<a class="doi" href="'+link+'" target="_blank" rel="noopener">'+(r.d?'DOI '+esc(r.d):'Ver fuente')+'</a>':'')+'</div></article>'});h+='</section>'});document.getElementById('list').innerHTML=n?h:'<p class="empty">No hay resultados para esa búsqueda.</p>'}
+document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value;render()});
+stats();chips();render();
+</script>
+</body>
+</html>
